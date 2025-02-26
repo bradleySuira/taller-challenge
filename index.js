@@ -1,6 +1,10 @@
 // License Key Formatting
 
-// Given a string S that consists of only alphanumeric characters and dashes. The string is separated into N + 1 groups by N dashes. Also given an integer K. We want to reformat the string S, such that each group contains exactly K characters, except for the first group, which could be shorter than K but still must contain at least one character. Furthermore, a dash must be inserted between two groups, and you should convert all lowercase letters to uppercase.
+// Given a string S that consists of only alphanumeric characters and dashes. 
+// //The string is separated into N + 1 groups by N dashes. 
+// //Also given an integer K. We want to reformat the string S, such that each group contains exactly K characters, except for the first group,
+// which could be shorter than K but still must contain at least one character. Furthermore, a dash must be inserted between two groups, 
+// and you should convert all lowercase letters to uppercase.
 // Examples:
 
 // Input: S = “5F3Z-2e-9-w”, K = 4
@@ -12,3 +16,24 @@
 // Output: “2-5G-3J”
 
 // Explanation: The string s has been split into three parts, each part has 2 characters except the first part, as it could be shorter as mentioned above
+
+
+
+function licenseKeyFormatting(s, k) {
+    let result = '';
+    let tokens = s.split('-');
+    if (tokens[0].length < 1) {
+        tokens = tokens.splice(0, 1)
+    }
+
+    for (let index = 0; index < tokens.length; index++) {
+        if (index > 0 && tokens[index].length < k) {
+            result += tokens[index];
+        } else {
+            result += tokens[index] + '-';
+        }
+    }
+    return result.toUpperCase();
+}
+
+console.log('resp', licenseKeyFormatting('2-5g-3-J', 2))
